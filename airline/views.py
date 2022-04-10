@@ -6,7 +6,7 @@ from requests import request
 """Views page for the airline application."""
 
 
-def home():
+def home(request):
     """Home page function."""
     return render(request, 'airline/main.html')
 
