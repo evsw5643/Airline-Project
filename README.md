@@ -8,5 +8,8 @@ Run Server:
 Create Virtual Environment: 
 'python3 -m venv virtual_environment'
 
-
+Login as admin
+Username: admin
+Password: admin
+email: admin@example.com
 
