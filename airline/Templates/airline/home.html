@@ -10,16 +10,34 @@
   <body>
     <h1>Handsome and Wealthy Airlines!</h1>
     <br />
-    <form action="/your-name/" method="post">
-      <label for="your_name">Your name: </label>
-      <input
-        id="your_name"
-        type="text"
-        name="your_name"
-        value="{{ current_name }}"
-      />
-      <input type="submit" value="OK" />
-    </form>
+    <form>
+        <!-- Email input -->
+        <div class="form-outline mb-4">
+          <input type="email" id="form2Example1" class="form-control" />
+          <label class="form-label" for="form2Example1">Email address</label>
+        </div>
+      
+        <!-- Password input -->
+        <div class="form-outline mb-4">
+          <input type="password" id="form2Example2" class="form-control" />
+          <label class="form-label" for="form2Example2">Password</label>
+        </div>
+      
+        <!-- 2 column grid layout for inline styling -->
+        <div class="row mb-4">
+          <div class="col d-flex justify-content-center">
+            <!-- Checkbox -->
+          </div>
+        </div>
+      
+        <!-- Submit button -->
+        <button type="button" class="btn btn-primary btn-block mb-4">Sign in</button>
+      
+        <!-- Register buttons -->
+        <div class="text-center">
+          <p>Not a member? <a href="#!">Register</a></p>
+        </div>
+      </form>
     <br />
   </body>
 </html>
