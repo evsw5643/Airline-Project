@@ -1,5 +1,6 @@
 """H&W Airlines."""
 
+from .forms import ReadFileForm
 from django.shortcuts import render
 from django.http import HttpResponse
 
@@ -14,3 +15,11 @@ def home(request):
 def about():
     """About page function."""
     return HttpResponse()
+
+def read_file(request):
+    form = ReadFileForm()
+    if request.method == 'POST':
+        form = ReadFileForm(request.POST, request.FILES)
+        if form.is_valid():
+            content = request.FILES['file'].read()
+    return render(request, 'home.html', locals())
