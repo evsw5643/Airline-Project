@@ -3,10 +3,13 @@
 By: Evan Swett, AJ Abam, and Henock Zemenfes
 
 Run Server:
-'python manage.py runserver'
+```python manage.py runserver```
 
 Create Virtual Environment: 
-'python3 -m venv virtual_environment'
+```python3 -m venv virtual_environment```
+
+Make Migrations:
+```python models.py makemigrations```
 
 To login as admin:
 Username: admin
@@ -15,8 +18,8 @@ email: admin@example.com
 
 
 User:
--id
--name
--email
--DOB
--password
+```id```
+```name```
+```email```
+```DOB```
+```password```
