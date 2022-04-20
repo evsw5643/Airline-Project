@@ -16,6 +16,7 @@ def about():
     """About page function."""
     return HttpResponse()
 
+
 def read_file(request):
     form = ReadFileForm()
     if request.method == 'POST':
