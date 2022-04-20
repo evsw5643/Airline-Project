@@ -3,10 +3,13 @@
 By: Evan Swett, AJ Abam, and Henock Zemenfes
 
 Run Server:
-'python manage.py runserver'
+```python manage.py runserver```
 
 Create Virtual Environment: 
-'python3 -m venv virtual_environment'
+```python3 -m venv virtual_environment```
+
+Make Migrations:
+```python models.py makemigrations```
 
 To login as admin:
 Username: admin
@@ -14,6 +17,7 @@ Password: admin
 email: admin@example.com
 
 
+<<<<<<< HEAD
 Each user is a Django User object with an:
 -id
 -name
@@ -31,3 +35,11 @@ The 'ContentType' points to the Model (SQLite3 table) that a permitted user need
 Our four different groups have uses for different data, so being assigned to a group allows for this functionality
 
 For example: The coach and pilot do not need to access a database of desserts, but a first class user needs permission to order them. Likewise a flight attendant needs to know what desserts to bring on the plane so they need access as well.
+=======
+User:
+```id```
+```name```
+```email```
+```DOB```
+```password```
+>>>>>>> 0f562d46b4564c21090acd202b9248d0724b219c
