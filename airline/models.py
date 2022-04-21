@@ -30,25 +30,24 @@ class UserManager(BaseUserManager):
         user.active = is_active
         user.staff = is_staff
         user.admin = is_admin
+        print(user.admin)
         user.save(using=self._db)
         return user
 
-    def create_staffuser(self, email, full_name, password=None):
+    def create_staffuser(self, email, password=None):
         user = self.create_user(
             email,
-            full_name,
             password=password,
             is_staff=True
         )
         return user
 
-    def create_superuser(self, email, full_name, password=None):
+    def create_superuser(self, email, password=None):
         user = self.create_user(
             email,
-            full_name,
             password,
-            staff=True,
-            admin=True
+            is_staff=True,
+            is_admin=True
         )
         return user
 
@@ -57,21 +56,20 @@ class UserManager(BaseUserManager):
 class User(AbstractBaseUser):
     # users will be identified by their email, this ensures no two users share an email
     email = models.EmailField(max_length=255, unique=True)
-    full_name = models.CharField(max_length=255, blank=True, null=True)
+    # full_name = models.CharField(max_length=255, blank=True, null=True)
     active = models.BooleanField(default=True)  # user can log in
     staff = models.BooleanField(default=False)  # new users are not staff...
     admin = models.BooleanField(default=False)  # or admin
-    print(admin)
     USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = ['full_name']
+    # REQUIRED_FIELDS = ['full_name']
 
     objects = UserManager()
 
     def __str__(self):
         return self.email
 
-    def get_full_name(self):
-        return self.full_name
+    def get_email(self):
+        return self.email
 
     @property
     def is_staff(self):
