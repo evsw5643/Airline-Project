@@ -1,18 +1,99 @@
 from ast import arg
+from locale import normalize
 from django.db import models
+from django.contrib.auth.models import (
+    AbstractBaseUser, BaseUserManager
+)
+
 
 class Airplane(models.Model):
     def __str__(self):
         return self.airplane_name
 
     airplane_name = models.CharField(max_length=200)
-    airplane_number = models.IntegerField(max_length=4)
+    airplane_number = models.IntegerField()
     airplane_date_of_departure = models.DateTimeField("Departure date")
 
 
-class User(models.Model):
+# custom User model referenced by https://www.youtube.com/watch?v=HshbjK1vDtY
+class UserManager(BaseUserManager):
+    def create_user(self, email, password=None, is_active=True, is_staff=False, is_admin=False):
+        if not email:
+            raise ValueError("Email is required")
+        if not password:
+            raise ValueError("Password is required")
+
+        user = self.model(
+            email = self.normalize_email(email),
+        )
+        user.set_password(password)
+        user.active = is_active
+        user.staff = is_staff
+        user.admin = is_admin
+        user.save(using=self._db)
+        return user
+
+    def create_staffuser(self, email, full_name, password=None):
+        user = self.create_user(
+            email,
+            full_name,
+            password=password,
+            is_staff=True
+        )
+        return user
+
+    def create_superuser(self, email, full_name, password=None):
+        user = self.create_user(
+            email,
+            full_name,
+            password,
+            staff=True,
+            admin=True
+        )
+        return user
+
+
+
+class User(AbstractBaseUser):
+    # users will be identified by their email, this ensures no two users share an email
+    email = models.EmailField(max_length=255, unique=True)
+    full_name = models.CharField(max_length=255, blank=True, null=True)
+    active = models.BooleanField(default=True)  # user can log in
+    staff = models.BooleanField(default=False)  # new users are not staff...
+    admin = models.BooleanField(default=False)  # or admin
+    print(admin)
+    USERNAME_FIELD = 'email'
+    REQUIRED_FIELDS = ['full_name']
+
+    objects = UserManager()
+
     def __str__(self):
-        return self.name
+        return self.email
+
+    def get_full_name(self):
+        return self.full_name
+
+    @property
+    def is_staff(self):
+        return self.staff
+
+    @property
+    def is_admin(self):
+        return self.admin
+
+    @property
+    def is_active(self):
+        return self.active
+
+
+class GuestEmail(models.Model):
+    email = models.EmailField()
+    active = models.BooleanField(default=True)
+    update = models.DateTimeField(auto_now=True)
+    timestamp = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.email
 
 
 class Singleton(models.Model):
@@ -26,5 +107,5 @@ class Setting(Singleton):
         ('poop.jpg', 'poop.jpg'),
         ('fuck.jpg', 'fuck.jpg'),
         ('bitch.png', 'bitch.png')
-        )
+    )
     background_title = models.CharField(max_length=100, choices=backgrounds)
