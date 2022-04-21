@@ -12,9 +12,8 @@ Make Migrations:
 ```python models.py makemigrations```
 
 To login as admin:
-Username: admin
-Password: admin
 email: admin@example.com
+Password: admin
 
 
 Each user is a Django User object with an:
