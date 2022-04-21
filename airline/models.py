@@ -108,8 +108,8 @@ class Singleton(models.Model):
 
 class Setting(Singleton):
     backgrounds = (
-        ('poop.jpg', 'poop.jpg'),
-        ('fuck.jpg', 'fuck.jpg'),
-        ('bitch.png', 'bitch.png')
+        ('Glacier-themed-airplane-Icelandair-560x420.jpeg', 'Glacier-themed-airplane-Icelandair-560x420.jpeg'),
+        ('istockphoto-807395598-170667a.jpeg', 'istockphoto-807395598-170667a.jpeg'),
+        ('lovepik-beautiful-night-scene-outside-the-plane-window-picture_500078781.jpeg', 'lovepik-beautiful-night-scene-outside-the-plane-window-picture_500078781.jpeg')
     )
     background_title = models.CharField(max_length=100, choices=backgrounds)
