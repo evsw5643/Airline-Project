@@ -55,7 +55,11 @@ class UserManager(BaseUserManager):
 
 class User(AbstractBaseUser):
     # users will be identified by their email, this ensures no two users share an email
-    email = models.EmailField(max_length=255, unique=True)
+    email = models.EmailField(
+        verbose_name='email address',
+        max_length=255, 
+        unique=True
+        )
     # full_name = models.CharField(max_length=255, blank=True, null=True)
     active = models.BooleanField(default=True)  # user can log in
     staff = models.BooleanField(default=False)  # new users are not staff...
