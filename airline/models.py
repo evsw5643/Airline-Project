@@ -17,7 +17,7 @@ class Airplane(models.Model):
 
 # custom User model referenced by https://www.youtube.com/watch?v=HshbjK1vDtY
 class UserManager(BaseUserManager):
-    def create_user(self, email, full_name, password=None):
+    def create_user(self, email, full_name, date_of_birth, password=None):
         if not email:
             raise ValueError("Email is required")
         if not password:
@@ -26,48 +26,53 @@ class UserManager(BaseUserManager):
             raise ValueError("Full name is required")
 
         user = self.model(
-            email = self.normalize_email(email),
-            full_name = full_name
+            email=self.normalize_email(email),
+            full_name=full_name,
+            date_of_birth=date_of_birth
         )
         user.set_password(password)
         print(user.admin)
         user.save(using=self._db)
         return user
 
-    def create_staffuser(self, full_name, email, password):
+    def create_staffuser(self, full_name, email, date_of_birth, password):
         user = self.create_user(
             email,
-            full_name,
+            full_name=full_name,
+            date_of_birth = date_of_birth,
             password=password,
         )
         user.staff = True
         user.save(using=self._db)
         return user
 
-    def create_superuser(self, full_name, email, password):
+    def create_superuser(self, full_name, email, date_of_birth, password):
         user = self.create_user(
             email,
-            full_name,
-            password = password,
+            full_name=full_name,
+            date_of_birth=date_of_birth,
+            password=password,
         )
         user.staff = True
         user.admin = True
         user.save(using=self._db)
         return user
 
-class User(AbstractBaseUser): #might add a DoB
+
+class User(AbstractBaseUser):  # might add a DoB
     # users will be identified by their email, this ensures no two users share an email
     email = models.EmailField(
         verbose_name='email address',
-        max_length=255, 
+        max_length=255,
         unique=True
-        )
+    )
     full_name = models.CharField(max_length=255, blank=True, null=True)
+    date_of_birth = models.DateField(null=True)
     active = models.BooleanField(default=True)  # user can log in
     staff = models.BooleanField(default=False)  # new users are not staff...
     admin = models.BooleanField(default=False)  # or admin
     USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = ['full_name']
+    REQUIRED_FIELDS = ['full_name', 'date_of_birth']
 
     objects = UserManager()
 
@@ -81,7 +86,7 @@ class User(AbstractBaseUser): #might add a DoB
         return self.full_name
 
     def has_perm(self, perm, object=None):
-        return True #come back later
+        return True  # come back later
 
     def has_module_perms(self, app_label):
         return True
@@ -97,9 +102,6 @@ class User(AbstractBaseUser): #might add a DoB
     @property
     def is_active(self):
         return self.active
-
-
-
 
 
 class GuestEmail(models.Model):

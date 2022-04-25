@@ -43,6 +43,11 @@ INSTALLED_APPS = [
 
 AUTH_USER_MODEL = 'airline.User' #changes built-in User model to the one I defined in models.py
 
+DATE_INPUT_FORMATS = ['%m/%d/%Y',]
+DATE_FORMAT = "D-m-y"
+USE_L10N = False
+
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
