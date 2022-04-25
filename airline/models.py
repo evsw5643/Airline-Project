@@ -55,7 +55,7 @@ class UserManager(BaseUserManager):
         user.save(using=self._db)
         return user
 
-class User(AbstractBaseUser):
+class User(AbstractBaseUser): #might add a DoB
     # users will be identified by their email, this ensures no two users share an email
     email = models.EmailField(
         verbose_name='email address',
@@ -67,7 +67,7 @@ class User(AbstractBaseUser):
     staff = models.BooleanField(default=False)  # new users are not staff...
     admin = models.BooleanField(default=False)  # or admin
     USERNAME_FIELD = 'email'
-    # REQUIRED_FIELDS = ['full_name']
+    REQUIRED_FIELDS = ['full_name']
 
     objects = UserManager()
 
@@ -76,6 +76,9 @@ class User(AbstractBaseUser):
 
     def get_email(self):
         return self.email
+
+    def get_full_name(self):
+        return self.full_name
 
     def has_perm(self, perm, object=None):
         return True #come back later

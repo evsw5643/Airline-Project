@@ -16,9 +16,12 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from . import views
+import airline
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.home, name='home')
+    path('', views.home, name='home'),
+    path('login.html', views.login_page),
+    path('register.html', views.register_page)
     # ex: /polls/5/
 ]
