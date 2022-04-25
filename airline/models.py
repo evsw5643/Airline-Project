@@ -17,7 +17,7 @@ class Airplane(models.Model):
 
 # custom User model referenced by https://www.youtube.com/watch?v=HshbjK1vDtY
 class UserManager(BaseUserManager):
-    def create_user(self, email, password=None, is_active=True, is_staff=False, is_admin=False):
+    def create_user(self, email, password=None):
         if not email:
             raise ValueError("Email is required")
         if not password:
@@ -27,31 +27,28 @@ class UserManager(BaseUserManager):
             email = self.normalize_email(email),
         )
         user.set_password(password)
-        user.active = is_active
-        user.staff = is_staff
-        user.admin = is_admin
         print(user.admin)
         user.save(using=self._db)
         return user
 
-    def create_staffuser(self, email, password=None):
+    def create_staffuser(self, email, password):
         user = self.create_user(
             email,
             password=password,
-            is_staff=True
         )
+        user.staff = True
+        user.save(using=self._db)
         return user
 
-    def create_superuser(self, email, password=None):
+    def create_superuser(self, email, password):
         user = self.create_user(
             email,
-            password,
-            is_staff=True,
-            is_admin=True
+            password = password,
         )
+        user.staff = True
+        user.admin = True
+        user.save(using=self._db)
         return user
-
-
 
 class User(AbstractBaseUser):
     # users will be identified by their email, this ensures no two users share an email
@@ -92,6 +89,9 @@ class User(AbstractBaseUser):
     @property
     def is_active(self):
         return self.active
+
+
+
 
 
 class GuestEmail(models.Model):
