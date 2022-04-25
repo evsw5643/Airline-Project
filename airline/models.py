@@ -17,32 +17,37 @@ class Airplane(models.Model):
 
 # custom User model referenced by https://www.youtube.com/watch?v=HshbjK1vDtY
 class UserManager(BaseUserManager):
-    def create_user(self, email, password=None):
+    def create_user(self, email, full_name, password=None):
         if not email:
             raise ValueError("Email is required")
         if not password:
             raise ValueError("Password is required")
+        if not full_name:
+            raise ValueError("Full name is required")
 
         user = self.model(
             email = self.normalize_email(email),
+            full_name = full_name
         )
         user.set_password(password)
         print(user.admin)
         user.save(using=self._db)
         return user
 
-    def create_staffuser(self, email, password):
+    def create_staffuser(self, full_name, email, password):
         user = self.create_user(
             email,
+            full_name,
             password=password,
         )
         user.staff = True
         user.save(using=self._db)
         return user
 
-    def create_superuser(self, email, password):
+    def create_superuser(self, full_name, email, password):
         user = self.create_user(
             email,
+            full_name,
             password = password,
         )
         user.staff = True
@@ -57,7 +62,7 @@ class User(AbstractBaseUser):
         max_length=255, 
         unique=True
         )
-    # full_name = models.CharField(max_length=255, blank=True, null=True)
+    full_name = models.CharField(max_length=255, blank=True, null=True)
     active = models.BooleanField(default=True)  # user can log in
     staff = models.BooleanField(default=False)  # new users are not staff...
     admin = models.BooleanField(default=False)  # or admin
