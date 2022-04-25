@@ -29,7 +29,7 @@ class UserAdmin(BaseUserAdmin):
     list_filter = ['admin','staff']
     fieldsets = (
         (None, {'fields': ('full_name', 'email', 'password')}),
-        ('Personal info', {'fields': ()}),
+        ('Personal info', {'fields': ('date_of_birth',)}),
         ('Permissions', {'fields': ('admin','staff','active')}),
     )
     # add_fieldsets is not a standard ModelAdmin attribute. UserAdmin

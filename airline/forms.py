@@ -71,10 +71,11 @@ class RegisterForm(forms.ModelForm):
     password1 = forms.CharField(label='Password', widget=forms.PasswordInput)
     password2 = forms.CharField(
         label='Password confirmation', widget=forms.PasswordInput)
+    date_of_birth = forms.DateInput()
 
     class Meta:
         model = User
-        fields = ('full_name', 'email',)  # 'full_name',)
+        fields = ('full_name', 'email', 'date_of_birth')  # 'full_name',)
 
     def clean_password2(self):
         # Check that the two password entries match
