@@ -3,20 +3,12 @@
 <head>
 <title>H&W Airlines</title>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=2">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 </head>
 <body>
   <html>
-    <head></head>
-    <body>
-        <h3>Read File Content</h3>
-        <form enctype="multipart/form-data" action="" method="post">
-            {% csrf_token %}
-            {{ form }}
-            <input type="submit" value="Save">
-        </form>
-    </body>
+
 </html>
 
 <div class="w3-top">
@@ -31,16 +23,16 @@
   </div>
 </div>
 
-<!-- Header -->
-<header class="w3-display-container w3-content w3-wide" style="max-width:1500px;" id="home">
-  <img class="w3-image" src="/Users/henockzemenfes/OOADPROJECT/Airline-Project/airline/airplane-night-flight-1140x1140-qNWPYPZow.jpeg" alt="Architecture" width="1500" height="800">
+
+<header class="w3-display-container w3-content w3-wide" style="max-width:1600px;" id="home">
+  <img class="image" src="pictures/airplane-night-flight-1140x1140-qNWPYPZow.jpeg" alt="Main" width="1500" height="1000">
   <div class="w3-display-middle w3-margin-top w3-center">
   </div>
 </header>
 
-<!-- Page content -->
+
 <div class="w3-content w3-padding" style="max-width:1564px" style="max-height: 1564px;">
-  <!-- Project Section -->
+
   <div class="w3-container w3-padding-32" id="projects">
     <h3 class="w3-border-bottom w3-border-light-grey w3-padding-16">It ain't easy to be Handome and Wealthy...</h3>
   </div>
@@ -49,25 +41,25 @@
     <div class="w3-col l3 m6 w3-margin-bottom">
       <div class="w3-display-container">
         <div class="w3-display-topleft w3-black w3-padding">Welcome to Luxury,</div>
-        <img src="/Users/henockzemenfes/OOADPROJECT/Airline-Project/airline/photo-1510686929997-e959239474f6.jpeg" alt="House" style="width:100%", height="-10%">
+        <img src="pictures/photo-1510686929997-e959239474f6.jpeg" alt="First" style="width:100%", height="-10%">
       </div>
     </div>
     <div class="w3-col l3 m6 w3-margin-bottom">
       <div class="w3-display-container">
         <div class="w3-display-topleft w3-black w3-padding">Class,</div>
-        <img src="/Users/henockzemenfes/OOADPROJECT/Airline-Project/airline/istockphoto-807395598-170667a.jpeg" alt="House" style="width:100%">
+        <img src="pictures/istockphoto-807395598-170667a.jpeg" alt="Second" style="width:100%">
       </div>
     </div>
     <div class="w3-col l3 m6 w3-margin-bottom">
       <div class="w3-display-container">
         <div class="w3-display-topleft w3-black w3-padding">Style,</div>
-        <img src="/Users/henockzemenfes/OOADPROJECT/Airline-Project/airline/Glacier-themed-airplane-Icelandair-560x420.jpeg" alt="House" style="width:100%">
+        <img src="pictures/Glacier-themed-airplane-Icelandair-560x420.jpeg" alt="Third" style="width:100%">
       </div>
     </div>
     <div class="w3-col l3 m6 w3-margin-bottom">
       <div class="w3-display-container">
         <div class="w3-display-topleft w3-black w3-padding">and Freedom.</div>
-        <img src="/Users/henockzemenfes/OOADPROJECT/Airline-Project/airline/lovepik-beautiful-night-scene-outside-the-plane-window-picture_500078781.jpeg" alt="House" style="width:100%">
+        <img src="pictures/lovepik-beautiful-night-scene-outside-the-plane-window-picture_500078781.jpeg" alt="Fourth" style="width:100%">
       </div>
     </div>
  
@@ -104,20 +96,29 @@
 
   <div class="w3-container w3-padding-32" id="contact">
     <h3 class="w3-border-bottom w3-border-light-grey w3-padding-16">Contact</h3>
-    <p>Join the family!</p>
+    <p>Join us for a ride of a lifetime!</p>
     <form action="/action_page.php" target="_blank">
       <input class="w3-input w3-border" type="text" placeholder="Name" required name="Name">
       <input class="w3-input w3-section w3-border" type="text" placeholder="Email" required name="Email">
       <input class="w3-input w3-section w3-border" type="text" placeholder="Subject" required name="Subject">
       <input class="w3-input w3-section w3-border" type="text" placeholder="Comment" required name="Comment">
       <button class="w3-button w3-black w3-section" type="submit">
-        <i class="fa fa-paper-plane"></i> SEND MESSAGE
+        <i class="fa fa-paper-plane"></i> SEND
       </button>
     </form>
   </div>
+  <head></head>
+  <body>
+      <h3>Read File Content</h3>
+      <form enctype="multipart/form-data" action="" method="post">
+          {% csrf_token %}
+          {{ form }}
+          <input type="submit" value="Save">
+      </form>
+  </body>
   
 <div class="w3-container">
-  <img src="/Users/henockzemenfes/OOADPROJECT/Airline-Project/airline/1408399789000-captain-nightlanding.webp" class="w3-image" style="width:100%">
+  <img src="pictures/1408399789000-captain-nightlanding.webp" class="finalImage" style="width:100%">
 </div>
 
 
