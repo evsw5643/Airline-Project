@@ -88,7 +88,37 @@ class LoginView(FormView):
 class RegisterView(CreateView):
     form_class = RegisterForm
     template_name = 'airline/register.html'
-    success_url = '/login.html'
+    success_url = '/home.html'
+
+
+class AboutView(CreateView):
+    form_class = RegisterForm
+    template_name = 'airline/about.html'
+    success_url = '/about.html'
+
+
+class FlightsView(CreateView):
+    form_class = RegisterForm
+    template_name = 'airline/flights.html'
+    success_url = '/flights.html'
+
+
+class BookingView(CreateView):
+    form_class = RegisterForm
+    template_name = 'airline/booking.html'
+    success_url = '/checkout.html'
+
+
+class CheckoutView(CreateView):
+    form_class = RegisterForm
+    template_name = 'airline/checkout.html'
+    success_url = '/confirmation.html'
+
+
+class ConfirmationView(CreateView):
+    form_class = RegisterForm
+    template_name = 'airline/confirmation.html'
+    success_url = '/confirmation.html'
 
 # def register_page(request):
 #     form = RegisterForm(request.POST or None)

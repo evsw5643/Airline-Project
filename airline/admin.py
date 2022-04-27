@@ -1,7 +1,7 @@
 from pyexpat import model
 from django.contrib import admin
 from django.contrib.auth import get_user_model
-from .models import Airplane, User, Setting
+from .models import Airplane, User, Setting, Booking
 from .forms import UserAdminCreationForm, UserAdminChangeForm
 
 User = get_user_model()
@@ -25,7 +25,7 @@ class UserAdmin(BaseUserAdmin):
     # The fields to be used in displaying the User model.
     # These override the definitions on the base UserAdmin
     # that reference specific fields on auth.User.
-    list_display = ['email', 'admin']
+    list_display = ['full_name', 'email', 'admin', 'staff']
     list_filter = ['admin','staff']
     fieldsets = (
         (None, {'fields': ('full_name', 'email', 'password')}),
@@ -45,7 +45,9 @@ class UserAdmin(BaseUserAdmin):
     filter_horizontal = ()
 
 
-admin.site.register(User, UserAdmin)
+admin.site.register(User, UserAdmin) 
+admin.site.register(Booking) #booking is just added for debugging, remove before production
+#booking is just added for debugging, remove before production
 @admin.register(Setting)
 class BackgroundSettings(admin.ModelAdmin):
     pass

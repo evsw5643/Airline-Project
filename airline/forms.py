@@ -93,3 +93,11 @@ class RegisterForm(forms.ModelForm):
         if commit:
             user.save()
         return user
+
+
+class AboutForm(forms.ModelForm):
+    pass
+
+
+class FlighttForm(forms.ModelForm):
+    pass
