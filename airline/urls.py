@@ -16,15 +16,20 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from . import views
-from .views import LoginView, RegisterView
+from .views import LoginView, RegisterView, AboutView, FlightsView, BookingView, CheckoutView, ConfirmationView
 import airline
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('home.html', views.home, name='home'),
-    path('', LoginView.as_view()), #goes to login page first
+    path('', LoginView.as_view()),#goes to login page first
     path('register.html', RegisterView.as_view(), name = "Register"),
     path('login.html', LoginView.as_view(), name = "Login"), #goes to login page first
+    path('about.html', AboutView.as_view(), name = "About"),#goes to login page first
+    path('flights.html', FlightsView.as_view(), name = "Flights"),#goes to login page first
+    path('booking.html', BookingView.as_view(), name = "Flights"),#goes to login page first
+    path('checkout.html', CheckoutView.as_view(), name = "Checkout"),#goes to login page first
+    path('confirmation.html', ConfirmationView.as_view(), name = "Confirmation"),#goes to login page first
 
     # ex: /polls/5/
 ]
