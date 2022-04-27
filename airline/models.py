@@ -104,8 +104,6 @@ class User(AbstractBaseUser):  # might add a DoB
         return self.active
 
 
-
-
 class Booking(models.Model):
     FOOD_CHOICES = (
         ('BC', 'Blackened Chicken'),
@@ -173,10 +171,10 @@ class Booking(models.Model):
         choices=DRINK_CHOICES,
         blank=True)
     movie_selection = models.CharField(
-        max_length=255, 
+        max_length=255,
         choices=MOVIE_CHOICES,
         blank=True)
-        
+
     cost = models.DecimalField(
         name="cost", decimal_places=2, max_digits=6, null=True)
 
