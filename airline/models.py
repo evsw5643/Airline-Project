@@ -5,11 +5,9 @@ from django.contrib.auth.models import (
     AbstractBaseUser, BaseUserManager
 )
 
-
 class Airplane(models.Model):
     def __str__(self):
         return self.airplane_name
-
     airplane_name = models.CharField(max_length=200)
     airplane_number = models.IntegerField()
     airplane_date_of_departure = models.DateTimeField("Departure date")
