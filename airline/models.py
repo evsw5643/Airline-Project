@@ -13,7 +13,8 @@ class Airplane(models.Model):
 
     airplane_name = models.CharField(max_length=200)
     airplane_number = models.IntegerField()
-    airplane_date_of_departure = models.DateTimeField(null= True, verbose_name="Departure date")
+    airplane_date_of_departure = models.DateTimeField(
+        null=True, verbose_name="Departure date")
 
 
 # custom User model referenced by https://www.youtube.com/watch?v=HshbjK1vDtY
@@ -105,36 +106,85 @@ class User(AbstractBaseUser):  # might add a DoB
         return self.active
 
 
-class GuestEmail(models.Model):
-    email = models.EmailField()
-    active = models.BooleanField(default=True)
-    update = models.DateTimeField(auto_now=True)
-    timestamp = models.DateTimeField(auto_now_add=True)
-
-    def __str__(self):
-        return self.email
 
 
 class Booking(models.Model):
-    
+    FOOD_CHOICES = (
+        ('BC', 'Blackened Chicken'),
+        ('NYS', 'New York Strip'),
+        ('ECS', 'Escargot'),
+        ('CAV', 'Caviar'),
+        ('OY', 'Oysters'),
+        ('FG', 'Foie Gras'),
+        ('RMO', 'Rocky Mountain Oysters'),
+        ('CB', 'Creme Brulee'),
+        ('WAG', 'Wagu Beef'),
+        ('BB', 'Baby Back Ribs'),
+        ('CP', 'Chicken Parmesean'),
+        ('NG', 'Nigiri')
+    )
+    DRINK_CHOICES = (
+        ('AS', 'Aperol Spritz'),
+        ('JC', 'Jack and Coke'),
+        ('RC', 'Rum and Coke'),
+        ('WW', 'White Wine'),
+        ('RW', 'Red Wine'),
+        ('CH', 'Champage'),
+        ('AS', 'Aperol Spritz'),
+        ('SD', 'Screwdriver'),
+        ('BM', 'Bloody Mary'),
+        ('PIL', 'Pilsner'),
+        ('IPA', 'IPA')
+    )
+    MOVIE_CHOICES = (
+        ('BAT', 'Batman'),
+        ('MF', 'Moonfall'),
+        ('IS', 'Interstellar'),
+        ('SP', 'Soul Plane'),
+        ('AP', 'The Adam Project'),
+        ('SM', 'Spiderman'),
+        ('X', 'X'),
+        ('SD', 'Screwdriver'),
+        ('CD', 'Choose or Die'),
+        ('PR', 'Power Rangers'),
+        ('KO', 'Knives Out'),
+        ('PR', 'Power Rangers'),
+        ('WE', 'Suck on That!'),
+        ('MU', "My Friend Clifford"),
+        ('DW', 'Dick Wildfreds Unlikely Adventure'),
+        ('DS', 'Dwight Schrute')
+    )
     airplane = models.ForeignKey(
-        Airplane, 
+        Airplane,
         verbose_name="Airplane",
         on_delete=models.CASCADE,
         null=True,
-        )
+    )
     user = models.ForeignKey(
-        User, 
+        User,
         on_delete=models.CASCADE,
         null=True
     )
-    food_selection = models.CharField(max_length=255 ,blank=True)
-    drink_selection = models.CharField(max_length=255, blank=True)
-    movie_selection = models.CharField(max_length=255, blank=True)
-    cost = models.DecimalField(name="cost", decimal_places=2, max_digits=6, null=True)
+    food_selection = models.CharField(
+        max_length=255,
+        choices=FOOD_CHOICES,
+        default='BR',
+    )
+    drink_selection = models.CharField(
+        max_length=255,
+        choices=DRINK_CHOICES,
+        blank=True)
+    movie_selection = models.CharField(
+        max_length=255, 
+        choices=MOVIE_CHOICES,
+        blank=True)
+        
+    cost = models.DecimalField(
+        name="cost", decimal_places=2, max_digits=6, null=True)
 
     def __str__(self):
         return '%s%s%s%s%s' % ("booking", "_", self.user, "_", self.airplane)
+
 
 class Singleton(models.Model):
     def save(self, *args, **kwargs):
