@@ -24,7 +24,7 @@ class UserAdminCreationForm(forms.ModelForm):
 
     def clean(self):
         '''
-        Verify both passwords match.
+        Verify bot passwords match.
         '''
         cleaned_data = super().clean()
         password = cleaned_data.get("password")

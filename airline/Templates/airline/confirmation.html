@@ -1,2 +1,36 @@
-<h1>Confirmation</h1>
-<a href="home.html" class="w3-bar-item w3-button">back</a>
+{% extends "airline/b_generic.html" %} 
+
+{% block content %} 
+{% if booking %}
+<div>
+  <h1>My Current Bookings</h1>
+  <div class="row row-cols-1 row-cols-md-2 g-4">
+    {% for b in booking %}
+    <div class="col">
+      <div class="card">
+        <img src="..." class="card-img-top" alt="..." />
+        <div class="card-body">
+          <h3 class="card-title">{{ b.airplane}} </h3>
+          <h4 class="card-title"> Flight #: {{ b.airplane.airplane_number }} </h4>
+          <h5 class="card-text">Headed To: </h5>
+          <p class="card-text"> {{ b.airplane.airplane_destination }} </p>
+          <h5 class="card-text">Meal Selection: </h5>
+          <p class="card-text"> {{ b.food_selection }} </p>
+          <h5 class="card-text">Drink Selection: </h5>
+          <p class="card-text"> {{ b.drink_selection }} </p>
+          <h5 class="card-text">Movie Selection: </h5>
+          <p class="card-text"> {{ b.movie_selection }} </p>
+          <h5 class="card-text">Total Cost: ${{ b.cost }}</h5>
+        </div>
+        <div class="card-footer">
+          <small class="text-muted">Departure Date/Time: {{ b.airplane.airplane_date_of_departure }}
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+  
+ {% else %} 
+ {% endif %} 
+ {% endblock %}
