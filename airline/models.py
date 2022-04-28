@@ -106,50 +106,51 @@ class User(AbstractBaseUser):  # might add a DoB
 
 
 class Booking(models.Model):
+
     FOOD_CHOICES = (
-        ('BC', 'Blackened Chicken'),
-        ('NYS', 'New York Strip'),
-        ('ECS', 'Escargot'),
-        ('CAV', 'Caviar'),
-        ('OY', 'Oysters'),
-        ('FG', 'Foie Gras'),
-        ('RMO', 'Rocky Mountain Oysters'),
-        ('CB', 'Creme Brulee'),
-        ('WAG', 'Wagu Beef'),
-        ('BB', 'Baby Back Ribs'),
-        ('CP', 'Chicken Parmesean'),
-        ('NG', 'Nigiri')
+        ('Blackened Chicken', 'Blackened Chicken'),
+        ('New York Strip', 'New York Strip'),
+        ('Escargot', 'Escargot'),
+        ('Caviar', 'Caviar'),
+        ('Oysters', 'Oysters'),
+        ('Foie Gras', 'Foie Gras'),
+        ('Rocky Mountain Oysters', 'Rocky Mountain Oysters'),
+        ('Creme Brulee', 'Creme Brulee'),
+        ('Wagu Beef', 'Wagu Beef'),
+        ('Baby Back Ribs', 'Baby Back Ribs'),
+        ('Chicken Parmesean', 'Chicken Parmesean'),
+        ('Nigiri', 'Nigiri')
     )
     DRINK_CHOICES = (
-        ('AS', 'Aperol Spritz'),
-        ('JC', 'Jack and Coke'),
-        ('RC', 'Rum and Coke'),
-        ('WW', 'White Wine'),
-        ('RW', 'Red Wine'),
-        ('CH', 'Champage'),
-        ('AS', 'Aperol Spritz'),
-        ('SD', 'Screwdriver'),
-        ('BM', 'Bloody Mary'),
-        ('PIL', 'Pilsner'),
+        ('Aperol Spritz', 'Aperol Spritz'),
+        ('Jack and Coke', 'Jack and Coke'),
+        ('Rum and Coke', 'Rum and Coke'),
+        ('White Wine', 'White Wine'),
+        ('Red Wine', 'Red Wine'),
+        ('Champagne', 'Champagne'),
+        ('Aperol Spritz', 'Aperol Spritz'),
+        ('Screwdriver', 'Screwdriver'),
+        ('Bloody Mary', 'Bloody Mary'),
+        ('Pilsner', 'Pilsner'),
         ('IPA', 'IPA')
     )
     MOVIE_CHOICES = (
-        ('BAT', 'Batman'),
-        ('MF', 'Moonfall'),
-        ('IS', 'Interstellar'),
-        ('SP', 'Soul Plane'),
-        ('AP', 'The Adam Project'),
-        ('SM', 'Spiderman'),
+        ('Batman', 'Batman'),
+        ('Moonfall', 'Moonfall'),
+        ('Interstellar', 'Interstellar'),
+        ('Soul Plane', 'Soul Plane'),
+        ('The Adam Project', 'The Adam Project'),
+        ('Spiderman', 'Spiderman'),
         ('X', 'X'),
-        ('SD', 'Screwdriver'),
-        ('CD', 'Choose or Die'),
-        ('PR', 'Power Rangers'),
-        ('KO', 'Knives Out'),
-        ('PR', 'Power Rangers'),
-        ('WE', 'Suck on That!'),
-        ('MU', "My Friend Clifford"),
-        ('DW', 'Dick Wildfreds Unlikely Adventure'),
-        ('DS', 'Dwight Schrute')
+        ('Screwdriver', 'Screwdriver'),
+        ('Choose or Die', 'Choose or Die'),
+        ('Power Rangers', 'Power Rangers'),
+        ('Knives Out', 'Knives Out'),
+        ('Power Rangers', 'Power Rangers'),
+        ('Suck on That!', 'Suck on That!'),
+        ('My Friend Clifford', 'My Friend Clifford'),
+        ('Dick Wildfreds Unlikely Adventure', 'Dick Wildfreds Unlikely Adventure'),
+        ('Dwight Schrute', 'Dwight Schrute')
     )
     airplane = models.ForeignKey(
         Airplane,
