@@ -11,6 +11,7 @@ class Airplane(models.Model):
         return self.airplane_name
     airplane_name = models.CharField(max_length=200)
     airplane_number = models.IntegerField()
+    airplane_destination = models.CharField(max_length=255, blank=True)
     airplane_date_of_departure = models.DateTimeField(
         null=True, verbose_name="Departure date")
 
@@ -104,8 +105,6 @@ class User(AbstractBaseUser):  # might add a DoB
         return self.active
 
 
-
-
 class Booking(models.Model):
     FOOD_CHOICES = (
         ('BC', 'Blackened Chicken'),
@@ -173,10 +172,10 @@ class Booking(models.Model):
         choices=DRINK_CHOICES,
         blank=True)
     movie_selection = models.CharField(
-        max_length=255, 
+        max_length=255,
         choices=MOVIE_CHOICES,
         blank=True)
-        
+
     cost = models.DecimalField(
         name="cost", decimal_places=2, max_digits=6, null=True)
 
