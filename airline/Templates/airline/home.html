@@ -1,41 +1,23 @@
-    {% extends "airline/b_generic.html" %}
+{% extends "airline/b_generic.html" %} 
 
-
-    {% block content %}
-    <h1>Upcoming Flights</h1>
-    <h2>Dynamic content</h2>
-    <p>H&W has the following record counts:</p>
-    <div class="card-group">
-      <div class="card">
-        <img src="..." class="card-img-top" alt="...">
-        <div class="card-body">
-          <h5 class="card-title">{{ destination }}</h5>
-          <p class="card-text">{{ airplane }}</p>
-          <p class="card-text">{{ date }}</p>
-        </div>
-        <div class="card-footer">
-          <small class="text-muted">Last updated 3 mins ago</small>
-        </div>
+{% block content %} 
+  {% if airplane %}
+  <h1>Upcoming Flights</h1>
+  <p>H&W has the following record counts:</p>
+  <div class="card-group">
+    {% for airplane in airplane_list %}
+    <div class="card">
+      <img src="..." class="card-img-top" alt="..." />
+      <div class="card-body">
+        <h5 class="card-title">{{ destination }}</h5>
+        <p class="card-text">{{ airplane }}</p>
+        <p class="card-text">{{ date }}</p>
       </div>
-      <div class="card">
-        <img src="..." class="card-img-top" alt="...">
-        <div class="card-body">
-          <h5 class="card-title">Card title</h5>
-          <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
-        </div>
-        <div class="card-footer">
-          <small class="text-muted">Last updated 3 mins ago</small>
-        </div>
-      </div>
-      <div class="card">
-        <img src="..." class="card-img-top" alt="...">
-        <div class="card-body">
-          <h5 class="card-title">Card title</h5>
-          <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
-        </div>
-        <div class="card-footer">
-          <small class="text-muted">Last updated 3 mins ago</small>
-        </div>
+      <div class="card-footer">
+        <small class="text-muted">Last updated 3 mins ago</small>
       </div>
     </div>
-    {% endblock %}
+  </div>
+  {% endfor %}
+  {% else %}
+  {% endblock %}
