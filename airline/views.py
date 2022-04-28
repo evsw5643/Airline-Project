@@ -35,13 +35,9 @@ def read_file(request):
     return render(request, 'home.html', locals())
 
 def home(request):
-    airplane = Airplane.objects.get(pk = 1)
-    destination = airplane.airplane_destination
-    date = airplane.airplane_date_of_departure
+    airplane_list = Airplane.objects.all()
     context = {
-        'airplane': airplane,
-        'destination': destination,
-        'date': date,
+        'airplane_list': airplane_list,
     }
     return render(request, 'airline/home.html', context=context)
 
