@@ -1,12 +1,15 @@
 """H&W Airlines."""
 
 from curses.ascii import CR
+
+import airline
 from .forms import ReadFileForm, LoginForm, RegisterForm
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib.auth import authenticate, login, get_user_model
 from django.utils.http import url_has_allowed_host_and_scheme
 from django.views.generic import CreateView, FormView
+from .models import Airplane
 #class based views
 
 User = get_user_model()
@@ -31,6 +34,16 @@ def read_file(request):
             content = request.FILES['file'].read()
     return render(request, 'home.html', locals())
 
+def home(request):
+    airplane = Airplane.objects.get(pk = 1)
+    destination = airplane.airplane_destination
+    date = airplane.airplane_date_of_departure
+    context = {
+        'airplane': airplane,
+        'destination': destination,
+        'date': date,
+    }
+    return render(request, 'airline/home.html', context=context)
 
 class LoginView(FormView):
     form_class = LoginForm
