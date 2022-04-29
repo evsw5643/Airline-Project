@@ -9,7 +9,7 @@ from django.http import HttpResponse
 from django.contrib.auth import authenticate, login, get_user_model
 from django.utils.http import url_has_allowed_host_and_scheme
 from django.views.generic import CreateView, FormView
-from .models import Airplane, Booking
+from .models import Airplane, Booking, Setting
 #class based views
 
 User = get_user_model()
@@ -40,6 +40,7 @@ def home(request):
 
 # ! CRUCIAL
 def confirmation(request):
+    print(' i love dogs')
     booking = Booking.objects.all()
     context = {
         'booking': booking,
