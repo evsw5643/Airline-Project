@@ -2,40 +2,12 @@
 
 
 {% block content %}
-    <div class="container theme-showcase margin-top-navbar" role="main" style="margin-top: 50px">
-    <div class="row">
-        <div class="col-md-12">
-            <table class="table table-striped">
-      <!-- employee detail information-->
-                <tr>
-                    <td>Id:</td><td>{{ emp.id }}</td>
-                </tr>
-                <tr>
-                    <td>User name:</td><td>{{ emp.user.username }}</td>
-                </tr>
-                <tr>
-                    <td>Mobile number:</td><td>{{ emp.emp_mobile }}</td>
-                </tr>
-                <tr>
-                    <td>Salary:</td><td>{{ emp.emp_salary }}</td>
-                </tr>
-                <tr>
-                    <td>Onboard date:</td><td>{{ emp.emp_onboard_date }}</td>
-                </tr>
-                <tr>
-                    <td>Department:</td><td>{{ emp.get_dept_values }}</td>
-                </tr>
-    {% else %}
-        <tr>
-            <td>
-                No employee data returned.
-            </td>
-        </tr>
-    {% endif %}
-            </table>
-            </div>
-        </div>
-    </div>
+  <h1>Destination: {{ airplane.airplane_destination }}</h1>
+  <p>Date: {{ airplane.airplane_date_of_departure }}</p>
+  <p>test</p>
+  <form action="" method="post">
+    {% csrf_token %}
+    {{ form.as_table }}
+    <input type="submit" value="Submit">
+  </form>
 {% endblock %}
-</body>
-</html>

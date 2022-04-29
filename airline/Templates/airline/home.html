@@ -6,6 +6,7 @@
 <div>
   <h1>Upcoming Flights</h1>
   <p>H&W offers the following:</p>
+  <p>Username: {{user.user_email }}</p>
   <div class="row row-cols-1 row-cols-md-2 g-4">
     {% for airplane in airplane_list %}
     <div class="col">
@@ -17,7 +18,7 @@
           <p class="card-text">Time of Departure: {{ airplane.airplane_date_of_departure }}</p>
         </div>
         <div class="card-footer">
-          <a href="{{ airplane.get_absolute_url }}">Book</a>         
+          <a href="{% url 'booking' airplane.airplane_name %}"> Book </a>         
         </div>
       </div>
     </div>

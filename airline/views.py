@@ -38,23 +38,22 @@ def home(request):
     airplane_list = Airplane.objects.all()
     context = {
         'airplane_list': airplane_list,
+        'user': user
     }
     return render(request, 'airline/home.html', context=context)
 
 
-def booking_view(request, airplane_name, user_email):
-    form = BookingForm(request.POST or None)
+def booking(request, airplane_name):
+    form = BookingForm()
     airplane = Airplane.objects.filter(airplane_name__exact=airplane_name)
-    user = User.objects.filter(email__exact=user_email)
     context = {
         "form": form,
         "airplane": airplane,
-        "user": user
     }
     if form.is_valid():
         # save the form data to model
         form.save()
-    return render(request, "booking.html/", context)
+    return render(request, "airline/booking.html", context)
 
 
 class LoginView(FormView):

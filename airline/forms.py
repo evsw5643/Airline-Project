@@ -67,11 +67,10 @@ class LoginForm(forms.Form):
     password = forms.CharField(widget=forms.PasswordInput)
 
 class BookingForm(ModelForm):
-    template_name = "airline/booking.html"
-    
     class Meta:
         model = Booking
         fields = ['airplane', 'user', 'food_selection', 'drink_selection', 'movie_selection', 'cost']
+
 
 class RegisterForm(forms.ModelForm):
     """A form for creating new users. Includes all the required
