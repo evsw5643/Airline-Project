@@ -3,27 +3,28 @@
 {% if airplane_list %}
 <div>
   <h1>Upcoming Flights</h1>
-  <p>H&W has the following record counts:</p>
+  <p>H&W offers the following:</p>
+  <p>Username: {{user.user_email }}</p>
   <div class="row row-cols-1 row-cols-md-2 g-4">
     {% for airplane in airplane_list %}
     <div class="col">
       <div class="card">
         <img src="..." class="card-img-top" alt="..." />
         <div class="card-body">
-          <h5 class="card-title">{{ airplane.airplane_destination }}</h5>
-          <p class="card-text">{{ airplane.airplane_name }}</p>
-          <p class="card-text">{{ airplane.airplane_date_of_departure }}</p>
+          <h5 class="card-title">Destination: {{ airplane.airplane_destination }}</h5>
+          <p class="card-text">Aircraft: {{ airplane.airplane_name }}</p>
+          <p class="card-text">Time of Departure: {{ airplane.airplane_date_of_departure }}</p>
         </div>
         <div class="card-footer">
-          <small class="text-muted">Last updated 3 mins ago</small>
+          <a href="{% url 'booking' airplane_name=airplane.airplane_name %}">{{ user.full_name }}</a>         
         </div>
       </div>
     </div>
     {% endfor %}
   </div>
 </div>
-
-</html>
+  
  {% else %} 
+ <h1>All of our flights are booked! Check back later.</h1>
  {% endif %} 
  {% endblock %}
