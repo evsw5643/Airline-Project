@@ -3,7 +3,7 @@
 from curses.ascii import CR
 
 import airline
-from .forms import ReadFileForm, LoginForm, RegisterForm
+from .forms import BookingForm, ReadFileForm, LoginForm, RegisterForm
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib.auth import authenticate, login, get_user_model
@@ -33,12 +33,25 @@ def read_file(request):
 def home(request):
     airplane_list = Airplane.objects.all()
     context = {
-        'airplane_list': airplane_list
+        'airplane_list': airplane_list,
+        'user': user
     }
     return render(request, 'airline/home.html', context=context)
 
 
-# ! CRUCIAL
+def booking(request, airplane_name):
+    form = BookingForm()
+    airplane = Airplane.objects.filter(airplane_name__exact=airplane_name)
+    context = {
+        "form": form,
+        "airplane": airplane,
+    }
+    if form.is_valid():
+        # save the form data to model
+        form.save()
+    return render(request, "airline/booking.html", context)
+
+  # ! CRUCIAL
 def confirmation(request):
     print(' i love dogs')
     booking = Booking.objects.all()
@@ -47,6 +60,7 @@ def confirmation(request):
     }
     return render(request, 'airline/confirmation.html', context=context)
 
+ 
 
 class LoginView(FormView):
     form_class = LoginForm
@@ -117,12 +131,6 @@ class FlightsView(CreateView):
     form_class = RegisterForm
     template_name = 'airline/flights.html'
     success_url = '/flights.html'
-
-
-class BookingView(CreateView):
-    form_class = RegisterForm
-    template_name = 'airline/booking.html'
-    success_url = '/checkout.html'
 
 
 class CheckoutView(CreateView):

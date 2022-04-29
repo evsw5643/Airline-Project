@@ -1,2 +1,13 @@
-<h1>Booking</h1>
-<a href="home.html" class="w3-bar-item w3-button">back</a>
+{% extends "airline/b_generic.html" %} 
+
+
+{% block content %}
+  <h1>Destination: {{ airplane.airplane_destination }}</h1>
+  <p>Date: {{ airplane.airplane_date_of_departure }}</p>
+  <p>test</p>
+  <form action="" method="post">
+    {% csrf_token %}
+    {{ form.as_table }}
+    <input type="submit" value="Submit">
+  </form>
+{% endblock %}

@@ -1,6 +1,8 @@
 from django import forms
+from django.forms import ModelForm
 from django.contrib.auth import get_user_model
 from django.contrib.auth.forms import ReadOnlyPasswordHashField
+from .models import Booking
 
 User = get_user_model()
 
@@ -63,6 +65,11 @@ class UserAdminChangeForm(forms.ModelForm):
 class LoginForm(forms.Form):
     email = forms.EmailField(label='Email')
     password = forms.CharField(widget=forms.PasswordInput)
+
+class BookingForm(ModelForm):
+    class Meta:
+        model = Booking
+        fields = ['airplane', 'user', 'food_selection', 'drink_selection', 'movie_selection', 'cost']
 
 
 class RegisterForm(forms.ModelForm):

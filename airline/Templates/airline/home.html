@@ -70,7 +70,7 @@
           <p class="card-text">Time of Departure: {{ airplane.airplane_date_of_departure }}</p>
         </div>
         <div class="card-footer">
-          <a href="{% url 'booking' airplane_name=airplane.airplane_name %}">{{ user.full_name }}</a>         
+          <a href="{% url 'booking' airplane.airplane_name %}"> Book </a>         
         </div>
       </div>
     </div>
