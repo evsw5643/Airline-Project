@@ -30,7 +30,7 @@ urlpatterns = [
     path('booking.html/<airplane_name>/', views.booking, name = "booking"),#goes to login page first
 
     path('checkout.html', CheckoutView.as_view(), name = "Checkout"),#goes to login page first
-    path('confirmation.html', ConfirmationView.as_view(), name = "Confirmation"),#goes to login page first
+    path('confirmation.html', views.confirmation, name='confirmation')
 
 
     # ex: /polls/5/

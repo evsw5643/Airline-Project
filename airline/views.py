@@ -9,16 +9,11 @@ from django.http import HttpResponse
 from django.contrib.auth import authenticate, login, get_user_model
 from django.utils.http import url_has_allowed_host_and_scheme
 from django.views.generic import CreateView, FormView
-from .models import Airplane
+from .models import Airplane, Booking, Setting
 #class based views
 
 User = get_user_model()
 """Views page for the airline application."""
-
-
-def home(request):
-    """Home page function."""
-    return render(request, 'airline/home.html')
 
 
 def about():
@@ -33,6 +28,7 @@ def read_file(request):
         if form.is_valid():
             content = request.FILES['file'].read()
     return render(request, 'home.html', locals())
+
 
 def home(request):
     airplane_list = Airplane.objects.all()
@@ -55,6 +51,16 @@ def booking(request, airplane_name):
         form.save()
     return render(request, "airline/booking.html", context)
 
+  # ! CRUCIAL
+def confirmation(request):
+    print(' i love dogs')
+    booking = Booking.objects.all()
+    context = {
+        'booking': booking,
+    }
+    return render(request, 'airline/confirmation.html', context=context)
+
+ 
 
 class LoginView(FormView):
     form_class = LoginForm
