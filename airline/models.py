@@ -9,12 +9,12 @@ from django.contrib.auth.models import (
 class Airplane(models.Model):
     def __str__(self):
         return self.airplane_name
+
     airplane_name = models.CharField(max_length=200)
     airplane_number = models.IntegerField()
     airplane_destination = models.CharField(max_length=255, blank=True)
     airplane_date_of_departure = models.DateTimeField(
         null=True, verbose_name="Departure date")
-
 
 # custom User model referenced by https://www.youtube.com/watch?v=HshbjK1vDtY
 class UserManager(BaseUserManager):

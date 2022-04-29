@@ -3,7 +3,7 @@
 from curses.ascii import CR
 
 import airline
-from .forms import ReadFileForm, LoginForm, RegisterForm
+from .forms import BookingForm, ReadFileForm, LoginForm, RegisterForm
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib.auth import authenticate, login, get_user_model
@@ -40,6 +40,22 @@ def home(request):
         'airplane_list': airplane_list,
     }
     return render(request, 'airline/home.html', context=context)
+
+
+def booking_view(request, airplane_name, user_email):
+    form = BookingForm(request.POST or None)
+    airplane = Airplane.objects.filter(airplane_name__exact=airplane_name)
+    user = User.objects.filter(email__exact=user_email)
+    context = {
+        "form": form,
+        "airplane": airplane,
+        "user": user
+    }
+    if form.is_valid():
+        # save the form data to model
+        form.save()
+    return render(request, "booking.html/", context)
+
 
 class LoginView(FormView):
     form_class = LoginForm
@@ -110,12 +126,6 @@ class FlightsView(CreateView):
     form_class = RegisterForm
     template_name = 'airline/flights.html'
     success_url = '/flights.html'
-
-
-class BookingView(CreateView):
-    form_class = RegisterForm
-    template_name = 'airline/booking.html'
-    success_url = '/checkout.html'
 
 
 class CheckoutView(CreateView):
