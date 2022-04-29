@@ -32,6 +32,7 @@ def read_file(request):
 
 def home(request):
     airplane_list = Airplane.objects.all()
+    user = request.user
     context = {
         'airplane_list': airplane_list,
         'user': user
