@@ -192,7 +192,8 @@ class Singleton(models.Model):
 
 class Setting(Singleton):
     backgrounds = (
-        ('poop.jpg', 'poop.jpg'),
+        ('lovepik-beautiful-night-scene-outside-the-plane-window-picture_500078781.jpeg',
+        'lovepik-beautiful-night-scene-outside-the-plane-window-picture_500078781.jpeg'),
         ('fuck.jpg', 'fuck.jpg'),
         ('bitch.png', 'bitch.png')
     )
