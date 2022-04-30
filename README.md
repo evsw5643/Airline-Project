@@ -2,6 +2,9 @@
 
 By: Evan Swett, AJ Abam, and Henock Zemenfes
 
+Video Link: https://youtu.be/dCXzop705r0
+
+
 Run Server:
 ```python3 manage.py runserver```
 
