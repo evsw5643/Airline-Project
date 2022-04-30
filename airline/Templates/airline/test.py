@@ -13,3 +13,4 @@ class FlightTestCase(TestCase):
         self.assertEqual(test.speak(), '"')
         self.assertEqual(test.speak(), '"')
         ()
+
