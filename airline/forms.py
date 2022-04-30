@@ -69,7 +69,14 @@ class LoginForm(forms.Form):
 class BookingForm(ModelForm):
     class Meta:
         model = Booking
-        fields = ['airplane', 'user', 'food_selection', 'drink_selection', 'movie_selection', 'cost']
+        fields = ['food_selection', 'drink_selection', 'movie_selection', 'cost']
+
+    def save(self, commit=True):
+        booking = super(BookingForm, self).save(commit=False)
+        if commit:
+            booking.save()
+        return booking
+
 
 
 class RegisterForm(forms.ModelForm):

@@ -7,9 +7,6 @@ from django.contrib.auth.models import (
 )
 
 class Airplane(models.Model):
-    def __str__(self):
-        return self.airplane_name
-
     airplane_name = models.CharField(max_length=200)
     airplane_number = models.IntegerField()
     airplane_destination = models.CharField(max_length=255, blank=True)
@@ -147,10 +144,6 @@ class Booking(models.Model):
         ('Power Rangers', 'Power Rangers'),
         ('Knives Out', 'Knives Out'),
         ('Power Rangers', 'Power Rangers'),
-        ('Suck on That!', 'Suck on That!'),
-        ('My Friend Clifford', 'My Friend Clifford'),
-        ('Dick Wildfreds Unlikely Adventure', 'Dick Wildfreds Unlikely Adventure'),
-        ('Dwight Schrute', 'Dwight Schrute')
     )
     airplane = models.ForeignKey(
         Airplane,

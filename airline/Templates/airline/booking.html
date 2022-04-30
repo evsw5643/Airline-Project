@@ -2,12 +2,11 @@
 
 
 {% block content %}
-  <h1>Destination: {{ airplane.airplane_destination }}</h1>
+  <h1>Destination: {{  }}</h1>
   <p>Date: {{ airplane.airplane_date_of_departure }}</p>
-  <p>test</p>
   <form action="" method="post">
     {% csrf_token %}
-    {{ form.as_table }}
+    {{ form.as_ul }}
     <input type="submit" value="Submit">
   </form>
 {% endblock %}

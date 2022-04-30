@@ -1,9 +1,9 @@
 from django.test import TestCase
 
 
-class FlightTestCase(TestCase):
+class AirplaneTestCase(TestCase):
     def setUp(self):
-        Flight.objects.create(name="", age="")
+        Airplane.objects.create(name="H&W5643", airplane="")
         Flight.objects.create(name="", age="")
 
     def flightscheck(self):
